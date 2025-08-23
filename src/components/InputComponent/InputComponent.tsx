@@ -1,7 +1,7 @@
 import './InputComponent.module.scss';
 
-import ChevronDown from '../Icons/ChevronDown';
-import ChevronUp from '../Icons/ChevronUp';
+import ChevronDown from '@/components/Icons/ChevronDown';
+import ChevronUp from '@/components/Icons/ChevronUp';
 
 const InputComponent = () => {
     return (

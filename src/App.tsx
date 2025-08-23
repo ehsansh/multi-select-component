@@ -1,4 +1,4 @@
-import SelectComponent from './components/SelectComponent/SelectComponent';
+import SelectComponent from '@/components/SelectComponent/SelectComponent';
 
 const defaultOptions = [
     { label: 'Education', icon: '🎓' },
