@@ -1,0 +1,11 @@
+$main-color: #3498db;
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    h1 {
+        color: $main-color;
+        font-size: 2rem;
+    }
+}
