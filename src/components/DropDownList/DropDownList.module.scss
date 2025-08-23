@@ -1,6 +1,7 @@
 ul {
     padding: 0;
     margin: 0;
+    background-color: #fff;
 }
 li {
     display: flex;
@@ -12,7 +13,7 @@ li {
         display: none;
     }
     &.selected {
-        background-color: #7d7db9;
+        background-color: #a6b8ff;
         svg {
             display: block;
         }
