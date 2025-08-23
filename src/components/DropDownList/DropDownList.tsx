@@ -1,5 +1,7 @@
-import './DropDownList.module.scss';
+import { useState } from 'react';
+import styles from './DropDownList.module.scss';
 
+import Check from '@/components/Icons/Check';
 import type { Option } from '@/types';
 
 interface Props {
@@ -7,12 +9,21 @@ interface Props {
 }
 
 const DropDownList = ({ options }: Props) => {
+    const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
+
     return (
         <ul>
             {options.map((option) => (
-                <li key={option.id}>
-                    <span>{option.label}</span>
-                    <span>{option.icon}</span>
+                <li
+                    className={selectedOptionId === option.id ? styles.selected : ''}
+                    onClick={() => setSelectedOptionId(option.id)}
+                    key={option.id}
+                >
+                    <div>
+                        <span>{option.label}</span>
+                        <span>{option.icon}</span>
+                    </div>
+                    <Check />
                 </li>
             ))}
         </ul>
