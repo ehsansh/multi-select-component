@@ -19,11 +19,11 @@ const DropDownList = ({ options }: Props) => {
                     onClick={() => setSelectedOptionId(option.id)}
                     key={option.id}
                 >
-                    <div>
+                    <div className={styles.content}>
                         <span>{option.label}</span>
                         <span>{option.icon}</span>
                     </div>
-                    <Check />
+                    <Check color="#2563EB" size={19} />
                 </li>
             ))}
         </ul>
