@@ -1,15 +1,13 @@
-import './InputComponent.module.scss';
+import styles from './InputComponent.module.scss';
 
-import ChevronDown from '@/components/Icons/ChevronDown';
 import ChevronUp from '@/components/Icons/ChevronUp';
 
 const InputComponent = () => {
     return (
-        <div>
-            <input type="text" />
-            <div className="icons">
-                <ChevronUp size={15} color="gray" />
-                <ChevronDown size={15} color="gray" />
+        <div className={styles.wrapper}>
+            <input autoComplete="off" name="search" type="text" />
+            <div className={styles.icons}>
+                <ChevronUp size={20} color="#6B7280" />
             </div>
         </div>
     );
