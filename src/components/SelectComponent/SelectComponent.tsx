@@ -1,10 +1,6 @@
 import './SelectComponent.module.scss';
 import InputComponent from '../InputComponent/InputComponent';
-
-interface Option {
-    label: string;
-    icon: string;
-}
+import type { Option } from '../../types';
 
 interface Props {
     options: Option[];
