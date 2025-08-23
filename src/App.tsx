@@ -1,4 +1,5 @@
 import SelectComponent from '@/components/SelectComponent/SelectComponent';
+import { v4 as uuidv4 } from 'uuid';
 
 const defaultOptions = [
     { label: 'Education', icon: '🎓' },
@@ -9,10 +10,15 @@ const defaultOptions = [
     { label: 'Health', icon: '🧑‍⚕️' },
 ];
 
+const optionsWithId = defaultOptions.map((option) => ({
+    ...option,
+    id: uuidv4(),
+}));
+
 function App() {
     return (
         <div>
-            <SelectComponent options={defaultOptions} />
+            <SelectComponent options={optionsWithId} />
         </div>
     );
 }

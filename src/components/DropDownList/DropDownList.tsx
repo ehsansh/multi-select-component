@@ -9,8 +9,8 @@ interface Props {
 const DropDownList = ({ options }: Props) => {
     return (
         <ul>
-            {options.map((option, index) => (
-                <li key={index}>
+            {options.map((option) => (
+                <li key={option.id}>
                     <span>{option.label}</span>
                     <span>{option.icon}</span>
                 </li>
