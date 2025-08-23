@@ -1,7 +1,12 @@
 import './SelectComponent.module.scss';
+import InputComponent from '../InputComponent/InputComponent';
 
 const SelectComponent = () => {
-    return <div>SelectComponent</div>;
+    return (
+        <div>
+            <InputComponent />
+        </div>
+    );
 };
 
 export default SelectComponent;
