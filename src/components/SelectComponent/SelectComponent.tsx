@@ -6,11 +6,12 @@ import type { Option } from '@/types';
 
 interface Props {
     options: Option[];
+    width?: string;
 }
 
-const SelectComponent = ({ options }: Props) => {
+const SelectComponent = ({ options, width = '220px' }: Props) => {
     return (
-        <div>
+        <div style={{ width }}>
             <InputComponent />
             <DropDownList options={options} />
         </div>

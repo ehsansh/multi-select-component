@@ -18,7 +18,7 @@ const optionsWithId = defaultOptions.map((option) => ({
 function App() {
     return (
         <div>
-            <SelectComponent options={optionsWithId} />
+            <SelectComponent options={optionsWithId} width="300px" />
         </div>
     );
 }
