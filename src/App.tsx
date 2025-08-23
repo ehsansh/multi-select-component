@@ -1,8 +1,10 @@
+import SelectComponent from './components/SelectComponent/SelectComponent';
+
 function App() {
     return (
-        <>
-            <h1>Test</h1>
-        </>
+        <div>
+            <SelectComponent />
+        </div>
     );
 }
 
