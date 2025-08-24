@@ -7,15 +7,24 @@ import type { Option } from '@/types';
 import styles from './SelectComponent.module.scss';
 
 interface Props {
-    options: Option[];
+    availableOptions: Option[];
+    selectedOptionIds: string[];
+    setAvailableOptions: React.Dispatch<React.SetStateAction<Option[]>>;
+    setSelectedOptionIds: React.Dispatch<React.SetStateAction<string[]>>;
     width?: string;
 }
 
-const SelectComponent = ({ options, width = '220px' }: Props) => {
+const SelectComponent = ({
+    availableOptions,
+    selectedOptionIds,
+    setAvailableOptions,
+    setSelectedOptionIds,
+    width = '220px',
+}: Props) => {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-    const [availableOptions, setAvailableOptions] = useState(options);
+    // const [availableOptions, setAvailableOptions] = useState(options);
     const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
-    const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+    // const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
 
     const toggleOption = (id: string) => {
         setSelectedOptionIds((prev) =>

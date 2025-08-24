@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import SelectComponent from '@/components/SelectComponent/SelectComponent';
 import { v4 as uuidv4 } from 'uuid';
 import SelectInfo from '@/components/SelectInfo/SelectInfo';
+import type { Option } from '@/types';
 
 const defaultOptions = [
     { label: 'Education', icon: '🎓' },
@@ -11,16 +13,25 @@ const defaultOptions = [
     { label: 'Health', icon: '🧑‍⚕️' },
 ];
 
-const optionsWithId = defaultOptions.map((option) => ({
+const optionsWithId: Option[] = defaultOptions.map((option) => ({
     ...option,
     id: uuidv4(),
 }));
 
 function App() {
+    const [availableOptions, setAvailableOptions] = useState(optionsWithId);
+    const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+
     return (
         <div>
             <div className="selectWrap">
-                <SelectComponent options={optionsWithId} width="300px" />
+                <SelectComponent
+                    availableOptions={availableOptions}
+                    selectedOptionIds={selectedOptionIds}
+                    setAvailableOptions={setAvailableOptions}
+                    setSelectedOptionIds={setSelectedOptionIds}
+                    width="300px"
+                />
             </div>
             <SelectInfo />
         </div>
