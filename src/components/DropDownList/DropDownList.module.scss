@@ -26,9 +26,12 @@ li {
     svg {
         display: none;
     }
-    &.selected {
+    &.selected,
+    &.highlighted {
         background-color: #edf2ff;
         color: #2563eb;
+    }
+    &.selected {
         svg {
             display: block;
         }

@@ -1,17 +1,20 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styles from './DropDownList.module.scss';
-
+import type { Dispatch, SetStateAction } from 'react';
 import Check from '@/components/Icons/Check';
 import type { Option } from '@/types';
 
 interface Props {
     options: Option[];
     isDropDownOpen: boolean;
+    setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
+    highlightedIndex: number;
 }
 
-const DropDownList = ({ options, isDropDownOpen }: Props) => {
+const DropDownList = ({ options, isDropDownOpen, highlightedIndex }: Props) => {
     if (options.length === 0) return null;
     const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+    const listRef = useRef<HTMLUListElement>(null);
 
     const toggleOption = (id: string) => {
         setSelectedOptionIds((prev) =>
@@ -20,12 +23,20 @@ const DropDownList = ({ options, isDropDownOpen }: Props) => {
     };
 
     return (
-        <ul id="dropdown-list" role="listbox" className={`${isDropDownOpen ? styles.open : ''}`}>
-            {options.map((option) => (
+        <ul
+            ref={listRef}
+            tabIndex={0}
+            id="dropdown-list"
+            role="listbox"
+            className={`${isDropDownOpen ? styles.open : ''}`}
+        >
+            {options.map((option, index) => (
                 <li
                     role="option"
                     aria-selected={selectedOptionIds.includes(option.id)}
-                    className={selectedOptionIds?.includes(option.id) ? styles.selected : ''}
+                    className={`${selectedOptionIds.includes(option.id) ? styles.selected : ''} ${
+                        index === highlightedIndex ? styles.highlighted : ''
+                    }`}
                     onClick={() => toggleOption(option.id)}
                     key={option.id}
                 >

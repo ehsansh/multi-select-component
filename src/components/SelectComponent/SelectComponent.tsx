@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import InputComponent from '@/components/InputComponent/InputComponent';
 import DropDownList from '@/components/DropDownList/DropDownList';
 import { useClickOutside } from '@/hooks/useClickOutside';
@@ -13,6 +13,7 @@ interface Props {
 const SelectComponent = ({ options, width = '220px' }: Props) => {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
     const [availableOptions, setAvailableOptions] = useState(options);
+    const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
 
     const componentRef = useClickOutside(() => {
         setIsDropDownOpen(false);
@@ -28,10 +29,27 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
                 id: uuidv4(),
             };
             setAvailableOptions((prev) => [newItem, ...prev]);
+            setHighlightedIndex((prev) => (prev + 1) % availableOptions.length);
             return true;
         }
         return false;
     };
+
+    const onHighlightChange = (key: string) => {
+        if (key === 'ArrowDown') {
+            setHighlightedIndex((prev) => (prev + 1) % availableOptions.length);
+        } else if (key === 'ArrowUp') {
+            setHighlightedIndex(
+                (prev) => (prev - 1 + availableOptions.length) % availableOptions.length
+            );
+        } else if (key === 'Escape') {
+            setIsDropDownOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        setHighlightedIndex(-1);
+    }, [isDropDownOpen]);
 
     return (
         <div ref={componentRef} style={{ width }}>
@@ -39,8 +57,14 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
                 addNewOption={addNewOption}
                 isDropDownOpen={isDropDownOpen}
                 setIsDropDownOpen={setIsDropDownOpen}
+                onHighlightChange={onHighlightChange}
             />
-            <DropDownList isDropDownOpen={isDropDownOpen} options={availableOptions} />
+            <DropDownList
+                setIsDropDownOpen={setIsDropDownOpen}
+                isDropDownOpen={isDropDownOpen}
+                options={availableOptions}
+                highlightedIndex={highlightedIndex}
+            />
         </div>
     );
 };

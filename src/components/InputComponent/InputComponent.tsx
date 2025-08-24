@@ -8,9 +8,15 @@ interface Props {
     setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
     addNewOption: (value: string) => boolean;
     isDropDownOpen: boolean;
+    onHighlightChange: (key: string) => void;
 }
 
-const InputComponent = ({ setIsDropDownOpen, addNewOption, isDropDownOpen }: Props) => {
+const InputComponent = ({
+    setIsDropDownOpen,
+    addNewOption,
+    onHighlightChange,
+    isDropDownOpen,
+}: Props) => {
     const [error, setError] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
@@ -23,8 +29,13 @@ const InputComponent = ({ setIsDropDownOpen, addNewOption, isDropDownOpen }: Pro
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (error) setError('');
-
         const value = e.currentTarget.value.trim();
+
+        if (['ArrowDown', 'ArrowUp', 'Escape'].includes(e.key)) {
+            onHighlightChange(e.key);
+            e.preventDefault();
+            return;
+        }
 
         if (e.key === 'Enter' && value) {
             const isAdded = addNewOption(value);
