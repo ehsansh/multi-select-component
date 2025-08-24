@@ -10,6 +10,7 @@ interface Props {
 }
 
 const DropDownList = ({ options, isDropDownOpen }: Props) => {
+    if (options.length === 0) return null;
     const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
 
     return (
