@@ -22,19 +22,17 @@ const SelectComponent = ({
     width = '220px',
 }: Props) => {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
-    // const [availableOptions, setAvailableOptions] = useState(options);
     const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
-    // const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+
+    const componentRef = useClickOutside(() => {
+        setIsDropDownOpen(false);
+    });
 
     const toggleOption = (id: string) => {
         setSelectedOptionIds((prev) =>
             prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
         );
     };
-
-    const componentRef = useClickOutside(() => {
-        setIsDropDownOpen(false);
-    });
 
     const addNewOption = (value: string) => {
         const found = availableOptions.find(
