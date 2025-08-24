@@ -47,6 +47,7 @@ const InputComponent = ({
     return (
         <div onClick={() => setIsDropDownOpen((prev: boolean) => !prev)} className={styles.wrapper}>
             <input
+                placeholder="Type or select an option..."
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
                 autoComplete="off"
