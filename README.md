@@ -35,7 +35,34 @@ This is a React + TypeScript project implementing a **multi drop-down select com
 - `DropDownList`: Displays list of options and selected items.
 - `useClickOutside`: Custom hook to detect clicks outside the component.
 
-## How To Use
+## SelectComponent Props
+
+`SelectComponent` is a **controlled component**. You need to provide the options, selected IDs, and state setters from the parent component. The following props are required:
+
+| Prop                   | Type                                             | Description                                                               |
+| ---------------------- | ------------------------------------------------ | ------------------------------------------------------------------------- |
+| `availableOptions`     | `Option[]`                                       | Array of available options, each with `id`, `label`, and optional `icon`. |
+| `selectedOptionIds`    | `string[]`                                       | Array of IDs representing currently selected options.                     |
+| `setAvailableOptions`  | `React.Dispatch<React.SetStateAction<Option[]>>` | Setter function to update the options array from parent.                  |
+| `setSelectedOptionIds` | `React.Dispatch<React.SetStateAction<string[]>>` | Setter function to update selected option IDs from parent.                |
+| `width` (optional)     | `string`                                         | Width of the select input (default: `"220px"`).                           |
+
+### Example Usage
+
+```tsx
+const [availableOptions, setAvailableOptions] = useState<Option[]>(initialOptions);
+const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+
+<SelectComponent
+    availableOptions={availableOptions}
+    selectedOptionIds={selectedIds}
+    setAvailableOptions={setOptions}
+    setSelectedOptionIds={setSelectedIds}
+    width="300px"
+/>;
+```
+
+## How To Start
 
 ```bash
 git clone https://github.com/your-username/lobox-task.git
