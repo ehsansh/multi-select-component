@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './SelectComponent.module.scss';
 import InputComponent from '@/components/InputComponent/InputComponent';
 import DropDownList from '@/components/DropDownList/DropDownList';
 import { useClickOutside } from '@/hooks/useClickOutside';

@@ -11,14 +11,20 @@ interface Props {
 
 const DropDownList = ({ options, isDropDownOpen }: Props) => {
     if (options.length === 0) return null;
-    const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
+    const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+
+    const toggleOption = (id: string) => {
+        setSelectedOptionIds((prev) =>
+            prev?.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+        );
+    };
 
     return (
         <ul className={`${isDropDownOpen ? styles.open : ''}`}>
             {options.map((option) => (
                 <li
-                    className={selectedOptionId === option.id ? styles.selected : ''}
-                    onClick={() => setSelectedOptionId(option.id)}
+                    className={selectedOptionIds?.includes(option.id) ? styles.selected : ''}
+                    onClick={() => toggleOption(option.id)}
                     key={option.id}
                 >
                     <div className={styles.content}>
