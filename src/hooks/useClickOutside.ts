@@ -1,12 +1,14 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 
 export const useClickOutside = (handler: () => void) => {
     const ref = useRef<HTMLDivElement>(null);
 
+    const memoizedHandler = useCallback(handler, [handler]);
+
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (ref.current && !ref.current.contains(event.target as Node)) {
-                handler();
+                memoizedHandler();
             }
         };
 
@@ -14,7 +16,7 @@ export const useClickOutside = (handler: () => void) => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [handler]);
+    }, [memoizedHandler]);
 
     return ref;
 };
