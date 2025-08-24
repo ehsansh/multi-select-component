@@ -1,26 +1,26 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import styles from './DropDownList.module.scss';
-import type { Dispatch, SetStateAction } from 'react';
 import Check from '@/components/Icons/Check';
 import type { Option } from '@/types';
 import clsx from 'clsx';
 interface Props {
     options: Option[];
     isDropDownOpen: boolean;
-    setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
     highlightedIndex: number;
+    selectedOptionIds: string[];
+    toggleOption: (id: string) => void;
 }
 
-const DropDownList = ({ options, isDropDownOpen, highlightedIndex }: Props) => {
+const DropDownList = ({
+    options,
+    isDropDownOpen,
+    highlightedIndex,
+    selectedOptionIds,
+    toggleOption,
+}: Props) => {
     if (options.length === 0) return null;
-    const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
-    const listRef = useRef<HTMLUListElement>(null);
 
-    const toggleOption = (id: string) => {
-        setSelectedOptionIds((prev) =>
-            prev?.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-        );
-    };
+    const listRef = useRef<HTMLUListElement>(null);
 
     return (
         <ul

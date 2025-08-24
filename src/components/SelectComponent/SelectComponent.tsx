@@ -15,6 +15,13 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
     const [availableOptions, setAvailableOptions] = useState(options);
     const [highlightedIndex, setHighlightedIndex] = useState<number>(-1);
+    const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
+
+    const toggleOption = (id: string) => {
+        setSelectedOptionIds((prev) =>
+            prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
+        );
+    };
 
     const componentRef = useClickOutside(() => {
         setIsDropDownOpen(false);
@@ -65,10 +72,11 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
                 onHighlightChange={onHighlightChange}
             />
             <DropDownList
-                setIsDropDownOpen={setIsDropDownOpen}
                 isDropDownOpen={isDropDownOpen}
                 options={availableOptions}
                 highlightedIndex={highlightedIndex}
+                selectedOptionIds={selectedOptionIds}
+                toggleOption={toggleOption}
             />
         </div>
     );
