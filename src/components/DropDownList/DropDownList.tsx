@@ -6,13 +6,14 @@ import type { Option } from '@/types';
 
 interface Props {
     options: Option[];
+    isDropDownOpen: boolean;
 }
 
-const DropDownList = ({ options }: Props) => {
+const DropDownList = ({ options, isDropDownOpen }: Props) => {
     const [selectedOptionId, setSelectedOptionId] = useState<string | null>(null);
 
     return (
-        <ul>
+        <ul className={`${isDropDownOpen ? styles.open : ''}`}>
             {options.map((option) => (
                 <li
                     className={selectedOptionId === option.id ? styles.selected : ''}
