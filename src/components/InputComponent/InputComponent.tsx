@@ -1,16 +1,17 @@
+import { useState } from 'react';
 import type { Dispatch, SetStateAction } from 'react';
 import { useRef, useEffect } from 'react';
 import styles from './InputComponent.module.scss';
 import ChevronUp from '@/components/Icons/ChevronUp';
-import type { Option } from '@/types';
-import { v4 as uuidv4 } from 'uuid';
+
 interface Props {
     setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
-    setAvailableOptions: Dispatch<SetStateAction<Option[]>>;
+    addNewOption: (value: string) => boolean;
     isDropDownOpen: boolean;
 }
 
-const InputComponent = ({ setIsDropDownOpen, setAvailableOptions, isDropDownOpen }: Props) => {
+const InputComponent = ({ setIsDropDownOpen, addNewOption, isDropDownOpen }: Props) => {
+    const [error, setError] = useState<string>('');
     const inputRef = useRef<HTMLInputElement>(null);
     useEffect(() => {
         if (isDropDownOpen) {
@@ -21,14 +22,14 @@ const InputComponent = ({ setIsDropDownOpen, setAvailableOptions, isDropDownOpen
     }, [isDropDownOpen]);
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (error) setError('');
+
         const value = e.currentTarget.value.trim();
+
         if (e.key === 'Enter' && value) {
-            const newItem = {
-                label: value,
-                id: uuidv4(),
-            };
-            setAvailableOptions((prev) => [newItem, ...prev]);
-            e.currentTarget.value = '';
+            const isAdded = addNewOption(value);
+            if (isAdded) e.currentTarget.value = '';
+            else setError('This option already exists!');
         }
     };
 
@@ -44,6 +45,7 @@ const InputComponent = ({ setIsDropDownOpen, setAvailableOptions, isDropDownOpen
             <div className={`${styles.icons} ${isDropDownOpen ? styles.rotate : ''}`}>
                 <ChevronUp size={20} color="#6B7280" />
             </div>
+            {error && <div className={styles.error}>{error}</div>}
         </div>
     );
 };

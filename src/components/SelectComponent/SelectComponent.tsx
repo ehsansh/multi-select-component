@@ -2,7 +2,7 @@ import { useState } from 'react';
 import InputComponent from '@/components/InputComponent/InputComponent';
 import DropDownList from '@/components/DropDownList/DropDownList';
 import { useClickOutside } from '@/hooks/useClickOutside';
-
+import { v4 as uuidv4 } from 'uuid';
 import type { Option } from '@/types';
 
 interface Props {
@@ -18,10 +18,25 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
         setIsDropDownOpen(false);
     });
 
+    const addNewOption = (value: string) => {
+        const found = availableOptions.find(
+            (option) => option.label.toLowerCase() === value.toLowerCase()
+        );
+        if (!found) {
+            const newItem = {
+                label: value,
+                id: uuidv4(),
+            };
+            setAvailableOptions((prev) => [newItem, ...prev]);
+            return true;
+        }
+        return false;
+    };
+
     return (
         <div ref={componentRef} style={{ width }}>
             <InputComponent
-                setAvailableOptions={setAvailableOptions}
+                addNewOption={addNewOption}
                 isDropDownOpen={isDropDownOpen}
                 setIsDropDownOpen={setIsDropDownOpen}
             />
