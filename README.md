@@ -2,6 +2,12 @@
 
 This is a React + TypeScript project implementing a **multi drop-down select component**. The component allows users to select, add, and manage multiple items from a dropdown list.
 
+## Live Demo
+
+You can try the multi-select component online:
+
+[View Demo on Vercel](https://multi-select-component-gamma.vercel.app/)
+
 ---
 
 ## Features
