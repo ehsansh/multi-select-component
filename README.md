@@ -53,13 +53,15 @@ This is a React + TypeScript project implementing a **multi drop-down select com
 const [availableOptions, setAvailableOptions] = useState<Option[]>(initialOptions);
 const [selectedOptionIds, setSelectedOptionIds] = useState<string[]>([]);
 
-<SelectComponent
-    availableOptions={availableOptions}
-    selectedOptionIds={selectedIds}
-    setAvailableOptions={setOptions}
-    setSelectedOptionIds={setSelectedIds}
-    width="300px"
-/>;
+return (
+    <SelectComponent
+        availableOptions={availableOptions}
+        selectedOptionIds={selectedOptionIds}
+        setAvailableOptions={setAvailableOptions}
+        setSelectedOptionIds={setSelectedOptionIds}
+        width="300px"
+    />
+);
 ```
 
 ## How To Start
