@@ -28,13 +28,13 @@ const DropDownList = ({ options, isDropDownOpen, highlightedIndex }: Props) => {
             tabIndex={0}
             id="dropdown-list"
             role="listbox"
-            className={clsx({ [styles.open]: isDropDownOpen })}
+            className={clsx(styles.dropdownList, { [styles.open]: isDropDownOpen })}
         >
             {options.map((option, index) => (
                 <li
                     role="option"
                     aria-selected={selectedOptionIds.includes(option.id)}
-                    className={clsx({
+                    className={clsx(styles.dropdownOption, {
                         [styles.selected]: selectedOptionIds.includes(option.id),
                         [styles.highlighted]: index === highlightedIndex,
                     })}

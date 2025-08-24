@@ -55,7 +55,7 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
     return (
         <div
             ref={componentRef}
-            className={styles.selectWrapper}
+            className={styles.selectComponent}
             style={{ '--select-width': width } as React.CSSProperties}
         >
             <InputComponent
