@@ -1,10 +1,15 @@
+import type { Dispatch, SetStateAction } from 'react';
 import styles from './InputComponent.module.scss';
 
 import ChevronUp from '@/components/Icons/ChevronUp';
 
-const InputComponent = () => {
+interface Props {
+    setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+const InputComponent = ({ setIsDropDownOpen }: Props) => {
     return (
-        <div className={styles.wrapper}>
+        <div onClick={() => setIsDropDownOpen((prev: boolean) => !prev)} className={styles.wrapper}>
             <input autoComplete="off" name="search" type="text" />
             <div className={styles.icons}>
                 <ChevronUp size={20} color="#6B7280" />
