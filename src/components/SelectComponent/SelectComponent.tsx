@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './SelectComponent.module.scss';
 import InputComponent from '@/components/InputComponent/InputComponent';
 import DropDownList from '@/components/DropDownList/DropDownList';
+import { useClickOutside } from '@/hooks/useClickOutside';
 
 import type { Option } from '@/types';
 
@@ -13,8 +14,12 @@ interface Props {
 const SelectComponent = ({ options, width = '220px' }: Props) => {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
 
+    const componentRef = useClickOutside(() => {
+        setIsDropDownOpen(false);
+    });
+
     return (
-        <div style={{ width }}>
+        <div ref={componentRef} style={{ width }}>
             <InputComponent isDropDownOpen={isDropDownOpen} setIsDropDownOpen={setIsDropDownOpen} />
             <DropDownList isDropDownOpen={isDropDownOpen} options={options} />
         </div>
