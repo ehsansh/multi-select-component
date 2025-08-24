@@ -4,6 +4,7 @@ import DropDownList from '@/components/DropDownList/DropDownList';
 import { useClickOutside } from '@/hooks/useClickOutside';
 import { v4 as uuidv4 } from 'uuid';
 import type { Option } from '@/types';
+import styles from './SelectComponent.module.scss';
 
 interface Props {
     options: Option[];
@@ -52,7 +53,11 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
     }, [isDropDownOpen]);
 
     return (
-        <div ref={componentRef} style={{ width }}>
+        <div
+            ref={componentRef}
+            className={styles.selectWrapper}
+            style={{ '--select-width': width } as React.CSSProperties}
+        >
             <InputComponent
                 addNewOption={addNewOption}
                 isDropDownOpen={isDropDownOpen}
