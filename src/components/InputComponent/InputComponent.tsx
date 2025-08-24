@@ -3,7 +3,7 @@ import type { Dispatch, SetStateAction } from 'react';
 import { useRef, useEffect } from 'react';
 import styles from './InputComponent.module.scss';
 import ChevronUp from '@/components/Icons/ChevronUp';
-
+import clsx from 'clsx';
 interface Props {
     setIsDropDownOpen: Dispatch<SetStateAction<boolean>>;
     addNewOption: (value: string) => boolean;
@@ -54,7 +54,7 @@ const InputComponent = ({
                 type="text"
                 aria-controls="dropdown-list"
             />
-            <div className={`${styles.icons} ${isDropDownOpen ? styles.rotate : ''}`}>
+            <div className={clsx(styles.icons, { [styles.rotate]: isDropDownOpen })}>
                 <ChevronUp size={20} color="#6B7280" />
             </div>
             {error && <div className={styles.error}>{error}</div>}

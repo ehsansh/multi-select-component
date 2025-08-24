@@ -3,7 +3,7 @@ import styles from './DropDownList.module.scss';
 import type { Dispatch, SetStateAction } from 'react';
 import Check from '@/components/Icons/Check';
 import type { Option } from '@/types';
-
+import clsx from 'clsx';
 interface Props {
     options: Option[];
     isDropDownOpen: boolean;
@@ -28,15 +28,16 @@ const DropDownList = ({ options, isDropDownOpen, highlightedIndex }: Props) => {
             tabIndex={0}
             id="dropdown-list"
             role="listbox"
-            className={`${isDropDownOpen ? styles.open : ''}`}
+            className={clsx({ [styles.open]: isDropDownOpen })}
         >
             {options.map((option, index) => (
                 <li
                     role="option"
                     aria-selected={selectedOptionIds.includes(option.id)}
-                    className={`${selectedOptionIds.includes(option.id) ? styles.selected : ''} ${
-                        index === highlightedIndex ? styles.highlighted : ''
-                    }`}
+                    className={clsx({
+                        [styles.selected]: selectedOptionIds.includes(option.id),
+                        [styles.highlighted]: index === highlightedIndex,
+                    })}
                     onClick={() => toggleOption(option.id)}
                     key={option.id}
                 >
