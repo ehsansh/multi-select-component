@@ -53,6 +53,8 @@ const InputComponent = ({
                 name="search"
                 type="text"
                 aria-controls="dropdown-list"
+                aria-expanded={isDropDownOpen}
+                aria-haspopup="listbox"
             />
             <div className={clsx(styles.icons, { [styles.rotate]: isDropDownOpen })}>
                 <ChevronUp size={20} color="#6B7280" />

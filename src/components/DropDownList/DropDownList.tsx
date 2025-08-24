@@ -28,6 +28,7 @@ const DropDownList = ({
             tabIndex={0}
             id="dropdown-list"
             role="listbox"
+            aria-multiselectable="true"
             className={clsx(styles.dropdownList, { [styles.open]: isDropDownOpen })}
         >
             {options.map((option, index) => (
