@@ -41,6 +41,7 @@ const InputComponent = ({ setIsDropDownOpen, addNewOption, isDropDownOpen }: Pro
                 autoComplete="off"
                 name="search"
                 type="text"
+                aria-controls="dropdown-list"
             />
             <div className={`${styles.icons} ${isDropDownOpen ? styles.rotate : ''}`}>
                 <ChevronUp size={20} color="#6B7280" />

@@ -20,9 +20,11 @@ const DropDownList = ({ options, isDropDownOpen }: Props) => {
     };
 
     return (
-        <ul className={`${isDropDownOpen ? styles.open : ''}`}>
+        <ul id="dropdown-list" role="listbox" className={`${isDropDownOpen ? styles.open : ''}`}>
             {options.map((option) => (
                 <li
+                    role="option"
+                    aria-selected={selectedOptionIds.includes(option.id)}
                     className={selectedOptionIds?.includes(option.id) ? styles.selected : ''}
                     onClick={() => toggleOption(option.id)}
                     key={option.id}
