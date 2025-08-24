@@ -13,6 +13,7 @@ interface Props {
 
 const SelectComponent = ({ options, width = '220px' }: Props) => {
     const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+    const [availableOptions, setAvailableOptions] = useState(options);
 
     const componentRef = useClickOutside(() => {
         setIsDropDownOpen(false);
@@ -20,8 +21,12 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
 
     return (
         <div ref={componentRef} style={{ width }}>
-            <InputComponent isDropDownOpen={isDropDownOpen} setIsDropDownOpen={setIsDropDownOpen} />
-            <DropDownList isDropDownOpen={isDropDownOpen} options={options} />
+            <InputComponent
+                setAvailableOptions={setAvailableOptions}
+                isDropDownOpen={isDropDownOpen}
+                setIsDropDownOpen={setIsDropDownOpen}
+            />
+            <DropDownList isDropDownOpen={isDropDownOpen} options={availableOptions} />
         </div>
     );
 };
