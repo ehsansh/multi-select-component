@@ -15,7 +15,7 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
 
     return (
         <div style={{ width }}>
-            <InputComponent setIsDropDownOpen={setIsDropDownOpen} />
+            <InputComponent isDropDownOpen={isDropDownOpen} setIsDropDownOpen={setIsDropDownOpen} />
             <DropDownList isDropDownOpen={isDropDownOpen} options={options} />
         </div>
     );

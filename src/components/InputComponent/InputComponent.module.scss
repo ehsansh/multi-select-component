@@ -20,4 +20,9 @@ div.icons {
     position: absolute;
     right: 13px;
     top: 26%;
+    transition: transform 0.2s ease;
+}
+
+.rotate {
+    transform: rotate(-180deg);
 }
