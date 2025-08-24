@@ -29,7 +29,7 @@ const SelectComponent = ({ options, width = '220px' }: Props) => {
                 id: uuidv4(),
             };
             setAvailableOptions((prev) => [newItem, ...prev]);
-            setHighlightedIndex((prev) => (prev + 1) % availableOptions.length);
+            setHighlightedIndex(0);
             return true;
         }
         return false;
